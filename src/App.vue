@@ -7,8 +7,6 @@
         <b-navbar-nav>
           <b-nav-item href="#">Home</b-nav-item>
         </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-button>
             Plaats Advertentie

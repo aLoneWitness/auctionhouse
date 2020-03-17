@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 import Home from './views/Home.vue';
+import Place from './views/Place.vue';
 
 const router = new Router({
     mode: 'history',
@@ -14,6 +15,11 @@ const router = new Router({
             name: 'Home',
             component: Home,
         },
+        {
+            path: '/place',
+            name: 'Place',
+            component: Place,
+        }
     ]
 })
 
