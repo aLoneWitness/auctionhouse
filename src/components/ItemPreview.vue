@@ -2,13 +2,13 @@
     <div>
         <b-card
             :title="this.title"
-            :img-src="this.previewImage"
+            :img-src="this.image"
             :img-alt="this.title"
             img-top
             class="itempreview"
         >
             <b-card-text>
-                $45,00
+                {{this.price + "€"}}
             </b-card-text>
         </b-card>
     </div>
@@ -18,8 +18,22 @@
     export default {
         name: "ItemPreview",
         props: {
-            title: String,
-            previewImage: String
+            id: Number
+        },
+        data() {
+            return {
+                image: "https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+                title: "Loading...",
+                price: 0
+            }
+        },
+        mounted() {
+            this.$http
+                .get("/items?id=" + this.id)
+                .then((response) => {
+                    this.title = response.data.name;
+                    this.price = response.data.price.toString()
+                })
         }
     }
 </script>

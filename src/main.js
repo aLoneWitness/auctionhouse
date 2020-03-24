@@ -14,6 +14,9 @@ Vue.config.productionTip = false;
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
+import axios from 'axios'
+axios.defaults.baseURL = "http://localhost:8081";
+Vue.prototype.$http = axios;
 
 new Vue({
   router,
