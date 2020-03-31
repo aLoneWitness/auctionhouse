@@ -32,7 +32,8 @@
                 .get("/items?id=" + this.id)
                 .then((response) => {
                     this.title = response.data.name;
-                    this.price = response.data.price.toString()
+                    this.price = response.data.price.toString();
+                    this.image = response.data.image;
                 })
         }
     }
