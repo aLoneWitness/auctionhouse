@@ -52,7 +52,7 @@
                 <b-col>
                     <div id="preview">
                         <h6>Preview:</h6>
-                        <b-card :img-src="this.form.imageURL || 'https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'" img-alt="Image will appear here!" img-left class="mb-3">
+                        <b-card :img-src="this.form.imageURL || 'https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'" style="max-width: 40rem" img-alt="Image will appear here!" img-left class="mb-3">
                             <b-card-title>{{this.form.name || 'Name will appear here!'}}</b-card-title>
                             <b-card-body>
                                 <b-card-text>
@@ -83,8 +83,18 @@
         },
         methods: {
             onSubmit(evt) {
-                evt.preventDefault()
+                evt.preventDefault();
+                let putContent = {
+                    name: this.form.name,
+                    price: this.form.price.valueOf(),
+                    image: this.form.imageURL.toString()
+                };
 
+                this.$http
+                    .put("/items", putContent, )
+                .then((response) => {
+                    console.log(response)
+                })
             },
             onReset(evt){
                 evt.preventDefault();
@@ -105,5 +115,6 @@
     }
     #preview{
         margin-top: 55px;
+        word-wrap: break-word;
     }
 </style>

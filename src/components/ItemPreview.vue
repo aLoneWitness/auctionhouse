@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-on:click="onClick()" class="preview">
         <b-card
             :title="this.title"
             :img-src="this.image"
@@ -35,13 +35,21 @@
                     this.price = response.data.price.toString();
                     this.image = response.data.image;
                 })
+        },
+        methods: {
+            onClick() {
+                this.$router.push({ name: 'Item', params: { id: this.id } })
+            }
         }
     }
 </script>
 
 <style scoped>
     .itempreview{
-        max-width: 15rem;
-        margin: 2rem;
+        margin: 20px;
     }
+    .preview {
+        cursor: pointer;
+    }
+
 </style>

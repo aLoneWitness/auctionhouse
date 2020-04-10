@@ -16,6 +16,9 @@ Vue.use(VueRouter);
 
 import axios from 'axios'
 axios.defaults.baseURL = "http://localhost:8081";
+axios.defaults.headers = {
+  'Content-Type': 'application/json'
+};
 Vue.prototype.$http = axios;
 
 new Vue({

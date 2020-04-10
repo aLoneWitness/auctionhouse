@@ -1,8 +1,19 @@
 <template>
     <div>
-        <b-card-group deck>
-            <item-preview v-bind:id="4"></item-preview>
-        </b-card-group>
+        <div class="cardgroup">
+            <b-card-group columns>
+                <item-preview v-bind:id="1"></item-preview>
+                <item-preview v-bind:id="2"></item-preview>
+                <item-preview v-bind:id="3"></item-preview>
+                <item-preview v-bind:id="4"></item-preview>
+                <item-preview v-bind:id="5"></item-preview>
+                <item-preview v-bind:id="6"></item-preview>
+                <item-preview v-bind:id="7"></item-preview>
+                <item-preview v-bind:id="8"></item-preview>
+                <item-preview v-bind:id="9"></item-preview>
+                <item-preview v-bind:id="10"></item-preview>
+            </b-card-group>
+        </div>
     </div>
 </template>
 
@@ -17,5 +28,8 @@
 </script>
 
 <style scoped>
-
+    .cardgroup {
+        max-width: 80%;
+        margin: auto;
+    }
 </style>
