@@ -28,6 +28,7 @@
             }
         },
         mounted() {
+            this.name = "Loading...";
             this.$http
                 .get("/items?id=" + this.id)
                 .then((response) => {

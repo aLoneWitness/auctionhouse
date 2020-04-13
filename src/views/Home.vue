@@ -29,7 +29,7 @@
 
 <style scoped>
     .cardgroup {
-        max-width: 80%;
+        max-width: 66%;
         margin: auto;
     }
 </style>
