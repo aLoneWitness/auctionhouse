@@ -13,6 +13,9 @@
                     <h3>Hansje123</h3>
 
                 </div>
+                <div class="biddingArea">
+                    <bidding></bidding>
+                </div>
             </b-col>
             <b-col cols=2></b-col>
         </b-row>
@@ -20,6 +23,7 @@
 </template>
 
 <script>
+    import Bidding from "../components/Bidding";
     export default {
         name: "Item",
         props: {
@@ -31,6 +35,9 @@
                 price: Number,
                 image: String
             }
+        },
+        components: {
+          Bidding
         },
         mounted() {
             this.$http
@@ -63,7 +70,7 @@
     }
     .sellerInformation {
         margin-top: 50px;
-        height: fit-content;
+        height: 200px;
         background-color: rgb(23, 162, 184);
         box-shadow: 2px 2px 5px rgb(23, 162, 184);
         text-align: left;
@@ -71,6 +78,20 @@
     .sellerInformation h3 {
         padding-top: 20px;
         padding-left: 20px;
+    }
+    img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-height: 500px;
+        max-width: 300px;
+    }
+    .biddingArea {
+        overflow: auto;
+        margin-top: 25px;
+        height: 475px;
+        background-color: darkslategray;
+        box-shadow: 2px 2px 5px rgb(23, 162, 184);
     }
 
 

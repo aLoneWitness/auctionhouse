@@ -49,6 +49,11 @@
     .itempreview{
         margin: 20px;
     }
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
     .preview {
         cursor: pointer;
     }
