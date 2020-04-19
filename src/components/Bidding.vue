@@ -34,6 +34,7 @@
             }
         },
         props: {
+            itemId : Number
         },
         data() {
             return {
@@ -49,7 +50,7 @@
             this.stompClient.connect({}, frame => {
                 this.connected = true;
                 console.log(frame);
-                this.stompClient.subscribe("/topic/auction/bids", tick => {
+                this.stompClient.subscribe("/topic/auction/" + this.itemId, tick => {
                     console.log(tick);
                     this.previousBids.push(JSON.parse(tick.body));
                     this.highestBid = JSON.parse(tick.body).amount;
@@ -67,7 +68,7 @@
                         from: window.location.host,
                         amount: this.bid
                     };
-                    this.stompClient.send("/app/auction", JSON.stringify(msg), {});
+                    this.stompClient.send("/app/auction/" + this.itemId, JSON.stringify(msg), {});
                 }
             },
         }

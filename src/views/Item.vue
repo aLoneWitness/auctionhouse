@@ -14,7 +14,7 @@
 
                 </div>
                 <div class="biddingArea">
-                    <bidding></bidding>
+                    <bidding :item-id="this.id"></bidding>
                 </div>
             </b-col>
             <b-col cols=2></b-col>
