@@ -86,18 +86,20 @@
                 evt.preventDefault();
                 let putContent = {
                     name: this.form.name,
+                    description: this.form.description,
                     price: this.form.price.valueOf(),
                     image: this.form.imageURL.toString()
                 };
 
                 this.$http
                     .put("/items", putContent, )
-                .then((response) => {
-                    console.log(response)
+                .then(() => {
+                    this.$router.push({ name: 'Home' })
                 })
             },
             onReset(evt){
                 evt.preventDefault();
+                this.form.description = '';
                 this.form.name = '';
                 this.form.imageURL = '';
                 this.form.price = 0;

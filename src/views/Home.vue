@@ -2,16 +2,7 @@
     <div>
         <div class="cardgroup">
             <b-card-group columns>
-                <item-preview v-bind:id="1"></item-preview>
-                <item-preview v-bind:id="2"></item-preview>
-                <item-preview v-bind:id="3"></item-preview>
-                <item-preview v-bind:id="4"></item-preview>
-                <item-preview v-bind:id="5"></item-preview>
-                <item-preview v-bind:id="6"></item-preview>
-                <item-preview v-bind:id="7"></item-preview>
-                <item-preview v-bind:id="8"></item-preview>
-                <item-preview v-bind:id="9"></item-preview>
-                <item-preview v-bind:id="10"></item-preview>
+                <item-preview v-for="item in storedItems" v-bind:key="item.id" v-bind:item="item"></item-preview>
             </b-card-group>
         </div>
     </div>
@@ -23,6 +14,22 @@
         name: "Home.vue",
         components: {
             ItemPreview
+        },
+        mounted() {
+            const params = {
+                startRange: 1,
+                endRange: 10
+            };
+            this.$http
+                .get("/items/getrange", { params })
+                .then((response) => {
+                    this.storedItems = response.data
+                })
+        },
+        data() {
+            return {
+                storedItems: Object
+            }
         }
     }
 </script>

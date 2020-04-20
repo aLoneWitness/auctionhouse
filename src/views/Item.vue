@@ -6,6 +6,7 @@
                 <div class="itemInformation">
                     <h2>{{this.name}}</h2>
                     <img :src="this.image">
+                    <p>{{this.description}}</p>
                 </div>
             </b-col>
             <b-col cols=3>
@@ -33,7 +34,8 @@
             return {
                 name: String,
                 price: Number,
-                image: String
+                image: String,
+                description: String
             }
         },
         components: {
@@ -46,6 +48,7 @@
                     this.name = response.data.name;
                     this.price = response.data.price.toString();
                     this.image = response.data.image;
+                    this.description = response.data.description;
                 })
         }
     }

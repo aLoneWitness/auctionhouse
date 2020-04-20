@@ -1,14 +1,16 @@
 <template>
     <div v-on:click="onClick()" class="preview">
         <b-card
-            :title="this.title"
-            :img-src="this.image"
-            :img-alt="this.title"
+            :img-src="this.item.image"
+            :img-alt="this.item.name"
             img-top
             class="itempreview"
         >
+            <b-card-title>
+                {{this.item.name}}
+            </b-card-title>
             <b-card-text>
-                {{this.price + "€"}}
+                {{this.item.price + "€"}}
             </b-card-text>
         </b-card>
     </div>
@@ -18,28 +20,14 @@
     export default {
         name: "ItemPreview",
         props: {
-            id: Number
-        },
-        data() {
-            return {
-                image: "https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
-                title: "Loading...",
-                price: 0
-            }
+            item: Object
         },
         mounted() {
-            this.name = "Loading...";
-            this.$http
-                .get("/items?id=" + this.id)
-                .then((response) => {
-                    this.title = response.data.name;
-                    this.price = response.data.price.toString();
-                    this.image = response.data.image;
-                })
+
         },
         methods: {
             onClick() {
-                this.$router.push({ name: 'Item', params: { id: this.id } })
+                this.$router.push({ name: 'Item', params: { id: this.item.id } })
             }
         }
     }

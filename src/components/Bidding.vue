@@ -63,13 +63,18 @@
         },
         methods: {
             placeBid() {
-                if (this.stompClient && this.stompClient.connected) {
-                    const msg = {
-                        from: window.location.host,
+                // if (this.stompClient && this.stompClient.connected) {
+                //     const msg = {
+                //         from: window.location.host,
+                //         amount: this.bid
+                //     };
+                //     this.stompClient.send("/app/auction/" + this.itemId, JSON.stringify(msg), {});
+                // }
+                this.$http
+                    .post("/items/addbid", {
+                        itemId: this.itemId,
                         amount: this.bid
-                    };
-                    this.stompClient.send("/app/auction/" + this.itemId, JSON.stringify(msg), {});
-                }
+                    })
             },
         }
     }
