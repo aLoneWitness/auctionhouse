@@ -67,6 +67,10 @@
         padding-top: 20px;
         padding-left: 20px;
     }
+    .itemInformation p {
+        padding-top: 20px;
+        padding-left: 20px;
+    }
     .itemInformation img {
         width: 95%;
         padding-left: 5%;
