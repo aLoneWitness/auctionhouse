@@ -17,8 +17,8 @@
         },
         mounted() {
             const params = {
-                startRange: 1,
-                endRange: 10
+                startRange: 0,
+                endRange: 9
             };
             this.$http
                 .get("/items/getrange", { params })

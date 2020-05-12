@@ -4,15 +4,15 @@
             <b-col cols=2></b-col>
             <b-col cols=5>
                 <div class="itemInformation">
-                    <h2>{{this.name}}</h2>
-                    <img :src="this.image">
-                    <p>{{this.description}}</p>
+                    <h2>{{this.itemData.name}}</h2>
+                    <img :src="this.itemData.image">
+                    <p>{{this.itemData.description}}</p>
                 </div>
             </b-col>
             <b-col cols=3>
                 <div class="sellerInformation">
-                    <h3>Hansje123</h3>
-
+                    <h3></h3>
+                    <h4></h4>
                 </div>
                 <div class="biddingArea">
                     <bidding :item-id="this.id"></bidding>
@@ -32,10 +32,8 @@
         },
         data() {
             return {
-                name: String,
-                price: Number,
-                image: String,
-                description: String
+                itemData: Object,
+                userData: Object
             }
         },
         components: {
@@ -45,11 +43,10 @@
             this.$http
                 .get("/items?id=" + this.id)
                 .then((response) => {
-                    this.name = response.data.name;
-                    this.price = response.data.price.toString();
-                    this.image = response.data.image;
-                    this.description = response.data.description;
+                    this.itemData = response.data;
                 })
+            this.$http
+                .get("/")
         }
     }
 </script>
