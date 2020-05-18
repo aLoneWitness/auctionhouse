@@ -7,6 +7,7 @@ import Home from './views/Home.vue';
 import Place from './views/Place.vue';
 import Item from "./views/Item.vue";
 import Login from "./views/Login";
+import User from "./views/User";
 
 const router = new Router({
     mode: 'history',
@@ -36,6 +37,12 @@ const router = new Router({
             name: 'Login',
             component: Login
         },
+        {
+            path: '/users/:username',
+            name: 'User',
+            component: User,
+
+        }
     ]
 });
 

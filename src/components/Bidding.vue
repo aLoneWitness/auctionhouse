@@ -34,7 +34,7 @@
             }
         },
         props: {
-            itemId : Number
+            itemId : String,
         },
         data() {
             return {
@@ -60,6 +60,18 @@
                 console.log(error);
                 this.connected = false;
             })
+
+
+            this.$http
+                .get("/items?id=" + this.itemId)
+                .then((response) => {
+                    for (const index in response.data.bids) {
+                        this.previousBids.push( {
+                            amount: response.data.bids[index].amount,
+                            from: response.data.bids[index].bidder.username
+                        })
+                    }
+                })
         },
         methods: {
             placeBid() {

@@ -11,8 +11,8 @@
             </b-col>
             <b-col cols=3>
                 <div class="sellerInformation">
-                    <h3></h3>
-                    <h4></h4>
+                    <h3>{{this.userData.username}}</h3>
+                    <h4>{{this.userData.email}}</h4>
                 </div>
                 <div class="biddingArea">
                     <bidding :item-id="this.id"></bidding>
@@ -28,12 +28,13 @@
     export default {
         name: "Item",
         props: {
-            id: Number
+            id: String
         },
         data() {
             return {
                 itemData: Object,
-                userData: Object
+                userData: Object,
+                bidsData: {}
             }
         },
         components: {
@@ -43,10 +44,12 @@
             this.$http
                 .get("/items?id=" + this.id)
                 .then((response) => {
+                    console.log(response.data)
                     this.itemData = response.data;
+                    this.userData = this.itemData.seller;
+                    this.bidsData = this.itemData.bids;
+
                 })
-            this.$http
-                .get("/")
         }
     }
 </script>
@@ -79,7 +82,7 @@
         box-shadow: 2px 2px 5px rgb(23, 162, 184);
         text-align: left;
     }
-    .sellerInformation h3 {
+    .sellerInformation h3, h4{
         padding-top: 20px;
         padding-left: 20px;
     }
