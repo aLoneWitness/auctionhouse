@@ -11,7 +11,7 @@
             </b-col>
             <b-col cols=3>
                 <div class="sellerInformation">
-                    <h3>{{this.userData.username}}</h3>
+                    <h3 id="username" @click="redirectToUserProfile">{{this.userData.username}}</h3>
                     <h4>{{this.userData.email}}</h4>
                 </div>
                 <div class="biddingArea">
@@ -50,6 +50,12 @@
                     this.bidsData = this.itemData.bids;
 
                 })
+        },
+        methods: {
+            redirectToUserProfile() {
+                const username = this.userData.username;
+                this.$router.push({name: 'User', params: { username } })
+            }
         }
     }
 </script>
@@ -99,6 +105,11 @@
         height: 475px;
         background-color: darkslategray;
         box-shadow: 2px 2px 5px rgb(23, 162, 184);
+    }
+    #username {
+        cursor: pointer;
+        color: black;
+        font-weight: bold;
     }
 
 

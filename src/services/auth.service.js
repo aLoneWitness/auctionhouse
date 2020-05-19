@@ -30,6 +30,7 @@ class AuthService {
             })
             .then((response) => {
                 if(response.status !== 200) return;
+                console.log(response.headers)
                 localStorage.setItem('token', response.headers.authorization)
                 Vue.prototype.$http.defaults.headers['Authorization'] = response.headers.authorization;
                 if(redirect === ''){
@@ -50,6 +51,24 @@ class AuthService {
                 password: password,
                 email: email
             }).then((response) => {
+                return response.status === 200;
+        })
+    }
+
+    registerWithRedirect(username, password, email, redirect) {
+        if(username === "" || password === "" || email === "") return false;
+        Vue.prototype.$http
+            .post("/register", {
+                username: username,
+                password: password,
+                email: email
+            }).then((response) => {
+                if(redirect === ''){
+                    router.push('/')
+                }
+                else {
+                    router.push(redirect)
+                }
                 return response.status === 200;
         })
     }

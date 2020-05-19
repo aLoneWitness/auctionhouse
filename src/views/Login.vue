@@ -9,6 +9,7 @@
         <div class="text-center mt-4">
             <b-button class="btn" @click="login" >Login</b-button>
         </div>
+        <a @click="$router.push('Register')">I don't have an account...</a>
     </div>
 </template>
 
@@ -22,7 +23,7 @@
                 let password = this.password;
 
                 AuthService.loginWithRedirect(username, password, this.$route.query.redirect)
-            }
+            },
         },
         data() {
             return {
@@ -37,5 +38,8 @@
     div {
         margin: 50px auto auto;
         width: 600px;
+    }
+    a {
+        cursor: pointer;
     }
 </style>

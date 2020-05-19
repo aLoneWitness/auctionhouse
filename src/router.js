@@ -8,6 +8,7 @@ import Place from './views/Place.vue';
 import Item from "./views/Item.vue";
 import Login from "./views/Login";
 import User from "./views/User";
+import Register from "./views/Register";
 
 const router = new Router({
     mode: 'history',
@@ -38,9 +39,15 @@ const router = new Router({
             component: Login
         },
         {
+            path: '/register',
+            name: 'Register',
+            component: Register
+        },
+        {
             path: '/users/:username',
             name: 'User',
             component: User,
+            meta: { requiresAuth: true }
 
         }
     ]
