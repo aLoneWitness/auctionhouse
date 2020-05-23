@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="cardgroup">
-            <b-card-group columns>
+        <div>
+            <b-card-group class="cardgroup" deck>
                 <item-preview v-for="item in storedItems" v-bind:key="item.id" v-bind:item="item"></item-preview>
             </b-card-group>
         </div>
