@@ -22,6 +22,7 @@
 
 <script>
     import ItemPreview from "../components/ItemPreview";
+    import AuthService from "../services/auth.service.js"
     export default {
         name: "User",
         data() {
@@ -30,8 +31,16 @@
             }
         },
         mounted() {
+            let username;
+            if(this.$route.params.username != null) {
+                username = this.$route.params.username
+            }
+            else {
+                username = AuthService.getUsername();
+            }
+
             this.$http
-                .get("/users?username=" + this.$route.params.username)
+                .get("/users?username=" + username)
                 .then((response) => {
                     console.log(response.data)
                     this.userData = response.data;

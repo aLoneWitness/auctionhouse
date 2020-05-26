@@ -45,7 +45,7 @@
             <template v-slot:button-content>
               <em>Account</em>
             </template>
-            <b-dropdown-item router-tag="user">Profile</b-dropdown-item>
+            <b-dropdown-item @click="redirect('/profile')">Profile</b-dropdown-item>
             <b-dropdown-item @click="logout()">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
 
@@ -71,6 +71,9 @@
       },
       logout() {
         AuthService.logout();
+      },
+      redirect(direction) {
+        this.$router.push(direction);
       }
     }
   }

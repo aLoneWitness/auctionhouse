@@ -21,7 +21,6 @@
             login() {
                 let username = this.username;
                 let password = this.password;
-
                 AuthService.loginWithRedirect(username, password, this.$route.query.redirect)
             },
         },

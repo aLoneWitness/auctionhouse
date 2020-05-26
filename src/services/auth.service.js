@@ -32,8 +32,10 @@ class AuthService {
                 if(response.status !== 200) return;
                 console.log(response.headers)
                 localStorage.setItem('token', response.headers.authorization)
+                localStorage.setItem('username', username)
                 Vue.prototype.$http.defaults.headers['Authorization'] = response.headers.authorization;
-                if(redirect === ''){
+                console.log(redirect)
+                if(typeof redirect === 'undefined' || redirect === null || redirect === ''){
                     router.push('/')
                 }
                 else {
@@ -75,8 +77,13 @@ class AuthService {
 
     logout() {
         localStorage.setItem('token', '')
+        localStorage.setItem('username', '')
         Vue.prototype.$http.defaults.headers['Authorization'] = '';
         location.reload()
+    }
+
+    getUsername() {
+        return localStorage.getItem('username');
     }
 
     isAuthenticated() {
