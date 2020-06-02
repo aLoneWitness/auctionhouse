@@ -7,6 +7,20 @@
                 <div class="userTitle">
                     <h2>{{this.userData.username}}</h2>
                     <h3>{{this.userData.email}}</h3>
+                    <vue-stars
+                            v-on:input="this.onRatingSet"
+                            name="demo"
+                            active-color="#ffdd00"
+                            inactive-color="#999999"
+                            shadow-color="#ffff00"
+                            hover-color="#ffdd00"
+                            :max="5"
+                            :value="this.rating"
+                            :readonly="false"
+                            char="★"
+                            inactive-char=""
+                            class=""
+                    />
                 </div>
                 <div class="userItems">
                     <h2 v-if="userData.inventory != null && userData.inventory.length === 0">This person has no items in inventory.</h2>
@@ -23,11 +37,14 @@
 <script>
     import ItemPreview from "../components/ItemPreview";
     import AuthService from "../services/auth.service.js"
+    import { VueStars } from "vue-stars";
     export default {
         name: "User",
         data() {
             return {
-                userData : Object
+                userData : Object,
+                originalRating: Number,
+                rating: Number
             }
         },
         mounted() {
@@ -44,11 +61,33 @@
                 .then((response) => {
                     console.log(response.data)
                     this.userData = response.data;
+
+                    let totalRateAmount = 0;
+                    for (let index in response.data.ratings) {
+                        totalRateAmount = totalRateAmount + response.data.ratings[index].stars;
+                    }
+                    this.rating = totalRateAmount / response.data.ratings.length
+                    this.originalRating = this.rating
                 })
 
         },
         components: {
-            ItemPreview
+            ItemPreview,
+            VueStars
+        },
+        methods: {
+            onRatingSet(value) {
+                this.$http
+                    .post("/users/addrating", {
+                        stars: value,
+                        username: this.userData.username
+                    })
+                    .then(() => {
+                        this.rating = this.originalRating
+
+                    })
+
+            }
         }
     }
 
@@ -57,7 +96,7 @@
 <style scoped>
     .userTitle {
         margin-top: 50px;
-        height: 100px;
+        height: 135px;
         background-color: #2c3e50;
         color: whitesmoke;
         text-align: left;

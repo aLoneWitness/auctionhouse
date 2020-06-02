@@ -51,7 +51,7 @@ const router = new Router({
         },
         {
             path: '/profile',
-            name: 'My Profile',
+            name: 'Me',
             component: User,
             meta: { RequiresAuth: true }
         }

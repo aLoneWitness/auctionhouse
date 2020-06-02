@@ -34,7 +34,7 @@
             }
         },
         props: {
-            itemId : String,
+            itemId : Number,
         },
         data() {
             return {
@@ -68,7 +68,7 @@
                     for (const index in response.data.bids) {
                         this.previousBids.push( {
                             amount: response.data.bids[index].amount,
-                            from: response.data.bids[index].bidder.username
+                            from: response.data.bids[index].username
                         })
                     }
                 })
