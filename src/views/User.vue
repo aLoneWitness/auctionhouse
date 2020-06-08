@@ -66,7 +66,7 @@
                     for (let index in response.data.ratings) {
                         totalRateAmount = totalRateAmount + response.data.ratings[index].stars;
                     }
-                    this.rating = totalRateAmount / response.data.ratings.length
+                    this.rating = Math.round(totalRateAmount / response.data.ratings.length)
                     this.originalRating = this.rating
                 })
 
