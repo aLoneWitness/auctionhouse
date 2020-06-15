@@ -94,7 +94,8 @@
                 this.$http
                     .put("/items", putContent, )
                 .then(() => {
-                    this.$router.push({ name: 'Home' })
+                    console.log('hi')
+                    this.$router.push('/')
                 })
             },
             onReset(evt){

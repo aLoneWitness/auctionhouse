@@ -9,7 +9,7 @@
         <div class="text-center mt-4">
             <b-button class="btn" @click="login" >Login</b-button>
         </div>
-        <a @click="$router.push('Register')">I don't have an account...</a>
+        <a @click="$router.push('register')">I don't have an account...</a>
     </div>
 </template>
 
