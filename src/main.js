@@ -3,7 +3,7 @@ import App from './App.vue'
 import Vuex from 'vuex'
 import router from './router'
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
-import AuthService from './services/auth.service';
+// import AuthService from './services/auth.service';
 
 Vue.use(Vuex);
 Vue.use(BootstrapVue);
@@ -34,12 +34,10 @@ axios.interceptors.response.use( (response) => {
     return new Promise((resolve, reject) => {
       reject(error)
     })
-
-
   }
 
-  AuthService.logout();
-  router.push("login");
+  // AuthService.logout();
+  // router.push("login");
 }))
 
 
