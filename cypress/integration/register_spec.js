@@ -1,9 +1,3 @@
-let jwtToken;
-
-beforeEach(() => {
-    cy.server();
-})
-
 describe('Unauthenticated User Rerouting', () => {
     it('Should redirect to login from main page', () => {
         cy.visit('localhost:8080')
@@ -56,6 +50,18 @@ describe('Authentication', () => {
 
         cy.url().should('eq', 'http://localhost:8080/')
     })
+
+    it('Logout', () => {
+        cy.visit('localhost:8080/login')
+
+        cy.get(':nth-child(2) > [type="text"]').type('test')
+        cy.get('[type="password"]').type('test')
+        cy.get('.btn').click()
+
+        cy.get('#__BVID__11__BV_button_').click()
+        cy.get(':nth-child(2) > .dropdown-item').click()
+        cy.url().should('eq', 'http://localhost:8080/login')
+    })
 })
 
 describe('Place', () => {
@@ -69,16 +75,16 @@ describe('Place', () => {
         cy.url().should('eq', 'http://localhost:8080/')
     })
 
-    it('Place [Possibility of Timeout]', () => {
+    it('Place', () => {
         cy.visit('localhost:8080/place')
         cy.get('#__BVID__19').type('Zelda Breath of the Wild')
         cy.get('#__BVID__21').type('made by Nintendo of Japan')
-        cy.get('#__BVID__23').type('https://tweakers.net/i/H88rz-ct1JxOMioIGyA5y4oa76o=/i/2001369167.jpeg')
+        cy.get('#__BVID__23').invoke('val', 'https://hatrabbits.com/wp-content/uploads/2018/10/risky-assumptions.jpg').trigger('change')  
+        cy.get('#__BVID__25').clear()
         cy.get('#__BVID__25').type('25')
-
-        cy.wait('@networkIdle0')
-
         cy.get('.btn').click()
+        
+        cy.url().should('eq', 'http://localhost:8080/')
     })
 })
 
@@ -88,12 +94,20 @@ describe('Rate', () => {
 
         cy.get(':nth-child(2) > [type="text"]').type('test2')
         cy.get('[type="password"]').type('test2')
+        cy.get('.btn').click()
+        cy.wait(1000)
         
-        cy.route('/login').as('login')
-        cy.wait('@login')
+        cy.visit('localhost:8080')
     })
 
     it('Rate user', () => {
-        cy.visit('localhost:8080/user/test')
+        cy.visit('localhost:8080/users/test')
+        cy.wait(1000)
+        cy.get('[for="demo1"]').click()
+        cy.on('window:alert', (str) => {
+            expect(str).to.equal(`Thanks for your feedback.`)
+        })
+        cy.wait(1000)
     })
 })
+

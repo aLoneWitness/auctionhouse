@@ -77,6 +77,7 @@
         },
         methods: {
             onRatingSet(value) {
+                console.log(this.userData.username)
                 this.$http
                     .post("/users/addrating", {
                         stars: value,
@@ -84,7 +85,7 @@
                     })
                     .then(() => {
                         this.rating = this.originalRating
-
+                        alert("Thanks for your feedback.")
                     })
 
             }
