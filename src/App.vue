@@ -18,7 +18,7 @@
 <!--      </b-collapse>-->
 <!--    </b-navbar>-->
     <b-navbar toggleable="lg" type="dark" variant="info" id="navbar">
-      <b-navbar-brand href="/">Auctionhouse</b-navbar-brand>
+      <b-navbar-brand @click="redirect('/')">Auctionhouse</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

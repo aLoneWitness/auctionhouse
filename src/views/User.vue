@@ -59,7 +59,6 @@
             this.$http
                 .get("/users?username=" + username)
                 .then((response) => {
-                    console.log(response.data)
                     this.userData = response.data;
 
                     let totalRateAmount = 0;

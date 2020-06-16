@@ -49,6 +49,9 @@ if(token) {
   Vue.prototype.$http.defaults.headers['Authorization'] = token;
 }
 
+Vue.config.devtools = true
+Vue.config.performance = true
+
 new Vue({
   router,
   render: h => h(App),

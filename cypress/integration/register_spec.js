@@ -58,7 +58,7 @@ describe('Authentication', () => {
         cy.get('[type="password"]').type('test')
         cy.get('.btn').click()
 
-        cy.get('#__BVID__11__BV_button_').click()
+        cy.get('#__BVID__10__BV_button_').click()
         cy.get(':nth-child(2) > .dropdown-item').click()
         cy.url().should('eq', 'http://localhost:8080/login')
     })
@@ -77,11 +77,11 @@ describe('Place', () => {
 
     it('Place', () => {
         cy.visit('localhost:8080/place')
-        cy.get('#__BVID__19').type('Zelda Breath of the Wild')
-        cy.get('#__BVID__21').type('made by Nintendo of Japan')
-        cy.get('#__BVID__23').invoke('val', 'https://hatrabbits.com/wp-content/uploads/2018/10/risky-assumptions.jpg').trigger('change')  
-        cy.get('#__BVID__25').clear()
-        cy.get('#__BVID__25').type('25')
+        cy.get('#__BVID__18').type('Zelda Breath of the Wild')
+        cy.get('#__BVID__20').type('made by Nintendo of Japan')
+        cy.get('#__BVID__22').invoke('val', 'https://hatrabbits.com/wp-content/uploads/2018/10/risky-assumptions.jpg').trigger('change')  
+        cy.get('#__BVID__24').clear()
+        cy.get('#__BVID__24').type('25')
         cy.get('.btn').click()
         
         cy.url().should('eq', 'http://localhost:8080/')
