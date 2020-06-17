@@ -31,11 +31,7 @@
             id: String
         },
         data() {
-            return {
-                itemData: Object,
-                userData: Object,
-                bidsData: {}
-            }
+             
         },
         components: {
           Bidding

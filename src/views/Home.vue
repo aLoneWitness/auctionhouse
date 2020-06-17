@@ -2,7 +2,7 @@
     <div>
         <div>
             <b-card-group class="cardgroup" deck>
-                <item-preview v-for="item in storedItems" v-bind:key="item.id" v-bind:item="item"></item-preview>
+                <item-preview class='item' v-for="item in storedItems" v-bind:key="item.id" v-bind:item="item"></item-preview>
             </b-card-group>
         </div>
     </div>
@@ -10,21 +10,14 @@
 
 <script>
     import ItemPreview from "../components/ItemPreview.vue";
+    import ItemService from '../item.service'
     export default {
         name: "Home.vue",
         components: {
             ItemPreview
         },
         mounted() {
-            const params = {
-                startRange: 0,
-                endRange: 9
-            };
-            this.$http
-                .get("/items/getrange", { params })
-                .then((response) => {
-                    this.storedItems = response.data
-                })
+            ItemService.GetRange().then((response) => { this.storedItems = response.data })
         },
         data() {
             return {
