@@ -38,6 +38,7 @@
     import ItemPreview from "../components/ItemPreview";
     import AuthService from "../services/auth.service.js"
     import { VueStars } from "vue-stars";
+    import UserService from '../services/user.service.js'
     export default {
         name: "User",
         data() {
@@ -49,15 +50,13 @@
         },
         mounted() {
             let username;
-            if(this.$route.params.username != null) {
+            if(this.$route != null && this.$route.params.username != null) {
                 username = this.$route.params.username
             }
             else {
                 username = AuthService.getUsername();
             }
-
-            this.$http
-                .get("/users?username=" + username)
+            UserService.GetByUsername(username)
                 .then((response) => {
                     this.userData = response.data;
 

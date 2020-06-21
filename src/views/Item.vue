@@ -25,6 +25,7 @@
 
 <script>
     import Bidding from "../components/Bidding";
+    import ItemService from "../services/item.service"
     export default {
         name: "Item",
         props: {
@@ -37,8 +38,7 @@
           Bidding
         },
         mounted() {
-            this.$http
-                .get("/items?id=" + this.id)
+            ItemService.GetByID(this.id)
                 .then((response) => {
                     console.log(response.data)
                     this.itemData = response.data;
@@ -74,7 +74,7 @@
         padding-left: 20px;
     }
     .itemInformation img {
-        width: 95%;
+        /* width: 95%; */
         padding-left: 5%;
     }
     .sellerInformation {

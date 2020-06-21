@@ -10,4 +10,8 @@ export default class ItemService {
             .get("/items/getrange", { params })
             
     }
+    static async GetByID(id) {
+        return axios
+                .get("/items?id=" + id)
+    }
 }

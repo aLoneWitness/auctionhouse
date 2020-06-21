@@ -58,7 +58,7 @@ describe('Authentication', () => {
         cy.get('[type="password"]').type('test')
         cy.get('.btn').click()
 
-        cy.get('#__BVID__10__BV_button_').click()
+        cy.get('#__BVID__10__BV_toggle_').click()
         cy.get(':nth-child(2) > .dropdown-item').click()
         cy.url().should('eq', 'http://localhost:8080/login')
     })

@@ -10,7 +10,7 @@
 
 <script>
     import ItemPreview from "../components/ItemPreview.vue";
-    import ItemService from '../item.service'
+    import ItemService from '../services/item.service'
     export default {
         name: "Home.vue",
         components: {
